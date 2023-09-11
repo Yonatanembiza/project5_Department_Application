@@ -26,38 +26,39 @@ public class MainClass {
 		department[3] = emp4;
 		department[4] = emp5;
 		
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("Do you wish to see the sum of salaries in the departemtn? [Y/N]: ");
-		String strSalary = scanner.next();
+		try (Scanner scanner = new Scanner(System.in)) {
+			System.out.print("Do you wish to see the sum of salaries in the departemtn? [Y/N]: ");
+			String strSalary = scanner.next();
 
-		if (strSalary.equalsIgnoreCase("Y")) {
-			double sum = 0;
-			for (int i=0; i<department.length; i++) {
-				sum += department[i].salary;
-			}
-			System.out.println("The sum of salary in the department is " + sum + " USD");
-
-		} else {
-			// Do nothing ...
-		}
-		System.out.println("---------------------------------------------------------------");
-		System.out.print("Do you wish to see details of an employee? [Y/N]: ");
-		String strDetails = scanner.next();
-		
-		if (strDetails.equalsIgnoreCase("y")) {
-			System.out.print("Provide the name for the employee: ");
-			String strNameEmployee = scanner.next();
-			for (int i=0; i<department.length; i++) {
-				if (strNameEmployee.equalsIgnoreCase(department[i].getName())) {
-					System.out.print("The details of the employee is: "+department[i].toString());
-					return;
+			if (strSalary.equalsIgnoreCase("Y")) {
+				double sum = 0;
+				for (int i=0; i<department.length; i++) {
+					sum += department[i].salary;
 				}
+				System.out.println("The sum of salary in the department is " + sum + " USD");
+
+			} else {
+				// Do nothing ...
 			}
-			System.out.print("There is no an employee by that name.");
-		} else {
-			// Do nothing ...
+			System.out.println("---------------------------------------------------------------");
+			System.out.print("Do you wish to see details of an employee? [Y/N]: ");
+			String strDetails = scanner.next();
+			
+			if (strDetails.equalsIgnoreCase("y")) {
+				System.out.print("Provide the name for the employee: ");
+				String strNameEmployee = scanner.next();
+				for (int i=0; i<department.length; i++) {
+					if (strNameEmployee.equalsIgnoreCase(department[i].getName())) {
+						System.out.print("The details of the employee is: "+department[i].toString());
+						return;
+					}
+				}
+				System.out.print("There is no an employee by that name.");
+			} else {
+				// Do nothing ...
+			}
+			//scanner.close();
 		}
-		scanner.close();
 	}
 
 }
